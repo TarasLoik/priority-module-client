@@ -1,0 +1,29 @@
+{
+  "name": "ModuleClient",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "nachos-ui": "^0.1.2",
+    "react": "16.0.0-alpha.12",
+    "react-native": "0.48.4",
+    "react-native-modal-dropdown": "^0.5.0",
+    "react-native-picker": "^4.2.0",
+    "react-native-router-flux": "^4.0.0-beta.21",
+    "react-native-search-box": "0.0.11",
+    "react-native-vector-icons": "^4.4.0",
+    "redux": "^3.7.2"
+  },
+  "devDependencies": {
+    "babel-jest": "21.0.2",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "21.1.0",
+    "react-test-renderer": "16.0.0-alpha.12"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
