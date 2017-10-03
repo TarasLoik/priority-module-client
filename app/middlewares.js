@@ -41,7 +41,7 @@ export const middlewares = [
   {
     key: 'total',
     component: TotalResultView,
-    title: 'TOTAL RESULT',
+    title: 'מֵידָע',
     hideNavBar: false,
   }
 ]

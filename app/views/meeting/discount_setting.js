@@ -30,6 +30,7 @@ export default class DiscountView extends Component {
       prDiscMax: 25,
       productDiscount: 0,
       showPicker: false,
+      result: 0
     }
   }
 
@@ -37,16 +38,20 @@ export default class DiscountView extends Component {
     let a = this.state.clientDiscount;
     let b = this.state.productDiscount;
     let result = a + b;
-    this.props.discount(result)
+    this.setState({result: result})
+    //this.props.discount(result)
+    return (
+      <Text>Total:{this.state.result}</Text>
+    )
   }
 
-  renderPickerClient(show) {
+  renderPickerClient(show) {1
     let data = [];
     for (let i = this.state.clDiscMin; i <= this.state.clDiscMax; i++) {data.push(i)}
     Picker.init({
       pickerData: data,
       selectedValue: [0],
-      pickerTitleText: 'הנחות',
+      pickerTitleText: 'הנחות למשפחה',
       pickerTitleColor: [75, 190, 185, 1],
       pickerConfirmBtnText: 'מַעֲרֶכֶת', // set
       pickerCancelBtnText: 'לְבַטֵל', // cancel
@@ -97,7 +102,7 @@ export default class DiscountView extends Component {
           <View style={{flex: 1, width: width - 60}}>
             <View style={{marginTop: 15, borderBottomWidth: 2, borderColor: colors.background_dark}}>
               <View style={[styles.container, {height: 45, borderRadius: 4, backgroundColor: colors.background}]}>
-                <TouchableOpacity onPress={this.renderPickerClient(true)}>
+                <TouchableOpacity onPress={() => this.renderPickerClient(true)}>
                   <View>
                     <Text style={[styles.textGrey, {color: colors.app_orange}]}>הנחות למשפחה</Text>
                   </View>
@@ -140,7 +145,9 @@ export default class DiscountView extends Component {
           </View>
           {this.renderPickerClient(this.state.showPicker)}
           {this.renderPickerProd(this.state.showPicker)}
-
+          <View>
+            {this.result()}
+          </View>
 
         </View>
       </View>

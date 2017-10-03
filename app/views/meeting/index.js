@@ -21,7 +21,6 @@ export default class MeetingView extends Component {
 
   constructor (props) {
     super (props);
-    console.log(props);
     this.state = {
       discountTab: false,
       client: this.props.client,
@@ -34,10 +33,6 @@ export default class MeetingView extends Component {
     (mode === 'Discount')
       ? this.setState({discountTab: true})
       : this.setState({discountTab: false});
-  }
-
-  setField(data) {
-    console.log(data);
   }
 
   setDiscount(data) {
