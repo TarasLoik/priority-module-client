@@ -50,15 +50,15 @@ export default class Main extends Component {
               <Text style={styles.textBigDark}>{this.state.selectedClient.name}</Text>
             </View>
             <View>
-              <Text style={styles.textGrey}>אזור:</Text>
+              <Text style={styles.textGrey}>{/*אזור:*/}Region:</Text>
               <Text style={styles.descText}>{this.state.selectedClient.region}</Text>
             </View>
             <View>
-              <Text style={styles.textGrey}>עיר:</Text>
+              <Text style={styles.textGrey}>{/*עיר:*/}City:</Text>
               <Text style={styles.descText}>{this.state.selectedClient.city}</Text>
             </View>
             <View>
-              <Text style={styles.textGrey}>מוצרים:</Text>
+              <Text style={styles.textGrey}>{/*מוצרים:*/}Products:</Text>
               <Text style={styles.descText}>מוצר1</Text>
               <Text style={styles.descText}>מוצר2</Text>
             </View>
@@ -71,13 +71,13 @@ export default class Main extends Component {
               <Text style={styles.descText}>{this.state.selectedClient.number}</Text>
             </View>
             <View>
-              <Text style={styles.textGrey}>אנשי קשר</Text>
+              <Text style={styles.textGrey}>{/*אנשי קשר*/}Contacts:</Text>
               <Text style={styles.descText}>{this.state.selectedClient.contacts.phone}</Text>
               <Text style={styles.descText}>{this.state.selectedClient.contacts.fax}</Text>
             </View>
             <View style={styles.btnReports}>
               <TouchableOpacity onPress={this.showLastReports}>
-                <Text style={styles.buttonTextTint}>דוחות קודמות</Text>
+                <Text style={styles.buttonTextTint}>LAST REPORTS{/*דוחות קודמות*/}</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -88,7 +88,7 @@ export default class Main extends Component {
         <View style={{flex: 1}}>
           <View style={styles.container}>
             <Text style={styles.textMassage}>
-              בחר לקוח
+              {/*בחר לקוח*/}client is not selected
             </Text>
           </View>
         </View>
@@ -111,7 +111,7 @@ export default class Main extends Component {
                 autoCapitalize='none'
                 value={this.state.searchText}
                 underlineColorAndroid='transparent'
-                placeholder="שחר"
+                placeholder="Search"
                 onChangeText={(searchText) => this.setState({searchText})}
               />
             </View>
@@ -131,7 +131,7 @@ export default class Main extends Component {
               kind='squared'
               theme={themes.buttonTheme}
               onPress={this.goToMeeting.bind(this)}
-            >להתחיל פגישה</Button>
+            >go to meeting</Button>
           </View>
 
         </View>

@@ -100,7 +100,7 @@ export default class ResultView extends Component {
             </Text>
             <View style={{marginRight: 5}}>
               <TouchableOpacity onPress={() => this.setModalVisible(true)}>
-                <Text style={styles.textGrey}>עוד מוצר</Text>{/*Add product*/}
+                <Text style={styles.textGrey}>{/*עוד מוצר*/}Add product</Text>{/*Add product*/}
               </TouchableOpacity>
             </View>
           </View>
@@ -165,7 +165,7 @@ export default class ResultView extends Component {
                 onSelect={(idx, value) => this.selectField(idx, value)}
               >
                 <Text style={styles.buttonText}>
-                  הוסף שדה
+                  ADD FIELD{/*הוסף שדה*/}
                 </Text>
               </ModalDropdown>
             </View>
@@ -186,7 +186,7 @@ export default class ResultView extends Component {
             >
               <View style={{height: 60, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.background}}>
                 <TouchableOpacity onPress={() => this.setModalVisible(false)}>
-                  <Text style={[styles.buttonText, {textAlign: 'center', fontSize: 25}]}>לְבַטֵל</Text>
+                  <Text style={[styles.buttonText, {textAlign: 'center', fontSize: 25}]}>{/*לְבַטֵל*/}CLOSE</Text>
                 </TouchableOpacity>
               </View>
               <ScrollView>

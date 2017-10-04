@@ -82,12 +82,14 @@ export default class MeetingView extends Component {
             >
               <SegmentedControlButton
                 value='Setting'
-                text='הוסף מידע'
+                //text='הוסף מידע'
+                text='INFO'
                 theme={themes.segmentedControlButtonTheme}
               />
               <SegmentedControlButton
                 value='Discount'
-                text='הנחות'
+                //text='הנחות'
+                text='DISCOUNTS'
                 theme={themes.segmentedControlButtonTheme}
               />
             </Switcher>
@@ -102,11 +104,12 @@ export default class MeetingView extends Component {
         {/*Bottom container(Button submit)*/}
         <View style={{ width: width, height: 100, alignItems: 'center', justifyContent: 'center', padding: 20}}>
           <Button
+            disabled={this.state.discountTab}
             style={styles.button}
             kind='squared'
             theme={themes.buttonTheme}
             onPress={this.submit.bind(this)}
-          >שלח</Button>
+          >{/*שלח*/}SUBMIT</Button>
         </View>
       </View>
     )

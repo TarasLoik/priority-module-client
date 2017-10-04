@@ -30,19 +30,12 @@ export default class DiscountView extends Component {
       prDiscMax: 25,
       productDiscount: 0,
       showPicker: false,
-      result: 0
-    }
+    };
+
   }
 
-  result() {
-    let a = this.state.clientDiscount;
-    let b = this.state.productDiscount;
-    let result = a + b;
-    this.setState({result: result})
-    //this.props.discount(result)
-    return (
-      <Text>Total:{this.state.result}</Text>
-    )
+  result(a, b) {
+    return (Number.parseInt(a) + Number.parseInt(b));
   }
 
   renderPickerClient(show) {1
@@ -97,14 +90,14 @@ export default class DiscountView extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={{marginTop: 20}}>
+        <View style={[styles.container, {marginTop: 20}]}>
 
           <View style={{flex: 1, width: width - 60}}>
             <View style={{marginTop: 15, borderBottomWidth: 2, borderColor: colors.background_dark}}>
               <View style={[styles.container, {height: 45, borderRadius: 4, backgroundColor: colors.background}]}>
                 <TouchableOpacity onPress={() => this.renderPickerClient(true)}>
                   <View>
-                    <Text style={[styles.textGrey, {color: colors.app_orange}]}>הנחות למשפחה</Text>
+                    <Text style={[styles.textGrey, {color: colors.app_orange}]}>FAMILY DISCOUNT{/*הנחות למשפחה*/}</Text>
                   </View>
                 </TouchableOpacity>
               </View>
@@ -121,14 +114,12 @@ export default class DiscountView extends Component {
 
             </View>
 
-
-
             <View style={{marginTop: 15, borderBottomWidth: 2, borderColor: colors.background_dark}}>
 
               <View style={[styles.container, {height: 45, borderRadius: 4, backgroundColor: colors.background}]}>
                 <TouchableOpacity onPress={() => this.renderPickerProd(true)}>
                   <View>
-                    <Text style={[styles.textGrey, {color: colors.app_orange}]}>הנחות</Text>
+                    <Text style={[styles.textGrey, {color: colors.app_orange}]}>PRODUCT DISCOUNT{/*הנחות*/}</Text>
                   </View>
                 </TouchableOpacity>
               </View>
@@ -145,10 +136,15 @@ export default class DiscountView extends Component {
           </View>
           {this.renderPickerClient(this.state.showPicker)}
           {this.renderPickerProd(this.state.showPicker)}
-          <View>
-            {this.result()}
-          </View>
+          <View style={{flexDirection: 'row', marginTop: 20, height: 20, alignSelf: 'center'}}>
+            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+              <Text style={styles.textGrey}>Discount result:</Text>
+            </View>
+            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+              <Text style={[styles.textBigDark]}>{this.result(this.state.productDiscount, this.state.clientDiscount)}</Text>
+            </View>
 
+          </View>
         </View>
       </View>
     )

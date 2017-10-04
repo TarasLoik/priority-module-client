@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import { Router, Scene, Actions, ActionConst } from 'react-native-router-flux'
+import { Provider } from 'react-redux'
+
+import store from './store'
 
 import { middlewares } from './middlewares'
 
@@ -30,7 +33,11 @@ export default class App extends Component {
   }
 
   renderApp() {
-    return <Router scenes={scenes}/>
+    return (
+      <Provider store={store}>
+        <Router scenes={scenes}/>
+      </Provider>
+    )
   }
 
   render() {

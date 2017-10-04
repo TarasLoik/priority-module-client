@@ -66,13 +66,13 @@ export default class TotalResultView extends Component {
             kind='squared'
             theme={themes.buttonTheme}
             onPress={() => {console.log(this.state.client, this.props.client)}}
-          >הוסף מידע</Button>
+          >ADD NOTES{/*הוסף מידע*/}</Button>
           <Button
             style={[styles.button, {margin: 5}]}
             kind='squared'
             theme={themes.buttonTheme}
             onPress={this.submit}
-          >שלח</Button>
+          >SUBMIT{/*שלח*/}</Button>
         </View>
       </View>
 
