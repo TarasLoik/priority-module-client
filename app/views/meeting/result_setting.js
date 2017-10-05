@@ -12,44 +12,13 @@ import {
 
 import ModalDropdown from 'react-native-modal-dropdown';
 
-import {Button} from 'nachos-ui'
-
 import styles from '../../styles/index.js';
 import colors from '../../styles/colors';
 const {width, height} = Dimensions.get('window');
 
-let tempData = {
-  products: [
-    'UREA(NPK:46-0-0)',
-    'POTASSIUM NITRATE(NPK:13-0-46)',
-    'SOLIMIX(NPK:15-0-15)',
-    'SOLIMIX:(NPK:19-19-19)',
-    'UREA(NPK:46-0-0)',
-    'POTASSIUM NITRATE(NPK:13-0-46)',
-    'SOLIMIX(NPK:15-0-15)',
-    'SOLIMIX:(NPK:19-19-19)',
-    'UREA(NPK:46-0-0)',
-    'POTASSIUM NITRATE(NPK:13-0-46)',
-    'SOLIMIX(NPK:15-0-15)',
-    'SOLIMIX:(NPK:19-19-19)',
-    'UREA(NPK:46-0-0)',
-    'POTASSIUM NITRATE(NPK:13-0-46)',
-    'SOLIMIX(NPK:15-0-15)',
-    'SOLIMIX:(NPK:19-19-19)',
-    'UREA(NPK:46-0-0)',
-    'POTASSIUM NITRATE(NPK:13-0-46)',
-    'SOLIMIX(NPK:15-0-15)',
-    'SOLIMIX:(NPK:19-19-19)',
-    'UREA(NPK:46-0-0)',
-    'POTASSIUM NITRATE(NPK:13-0-46)',
-    'SOLIMIX(NPK:15-0-15)',
-    'SOLIMIX:(NPK:19-19-19)',
-    'UREA(NPK:46-0-0)',
-    'POTASSIUM NITRATE(NPK:13-0-46)',
-    'SOLIMIX(NPK:15-0-15)',
-    'SOLIMIX:(NPK:19-19-19)',
-  ]
-}
+import initialData from '../../store/initial_data';
+const DEMO_OPTIONS = initialData.products
+
 
 export default class ResultView extends Component {
 
@@ -57,7 +26,7 @@ export default class ResultView extends Component {
     super(props)
     this.state = {
       fields: this.props.data.client.fields,
-      tempProducts: tempData.products,
+      tempProducts: DEMO_OPTIONS,
       addedField: {
         name: '',
         fieldProducts: []

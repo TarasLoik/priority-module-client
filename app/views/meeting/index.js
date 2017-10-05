@@ -16,7 +16,7 @@ const {width, height} = Dimensions.get('window');
 
 import DiscountView from './discount_setting'
 import ResultView from './result_setting'
-
+//import order from '../../store/actions/order'
 export default class MeetingView extends Component {
 
   constructor (props) {
@@ -66,6 +66,7 @@ export default class MeetingView extends Component {
         discount: this.state.discounts
       }
     )
+    //order.create('from meeting')
   }
 
   render() {
