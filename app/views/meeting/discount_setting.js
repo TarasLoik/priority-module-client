@@ -35,6 +35,7 @@ export default class DiscountView extends Component {
   }
 
   result(a, b) {
+    this.props.discounts(Number.parseInt(a) + Number.parseInt(b));
     return (Number.parseInt(a) + Number.parseInt(b));
   }
 

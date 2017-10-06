@@ -33,7 +33,7 @@ export default class App extends Component {
   }
 
   renderApp() {
-    console.log(store);
+    console.log(store.getState());
     return (
       <Provider store={store}>
         <Router scenes={scenes}/>

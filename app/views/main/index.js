@@ -15,6 +15,12 @@ import themes from '../../styles/themes';
 
 const {width, height} = Dimensions.get('window');
 
+import stateAction from '../../store/actions/state'
+import store from '../../store'
+
+import initialData from '../../store/initial_data';
+const DEMO_OPTIONS = initialData.demo_clients
+
 export default class Main extends Component {
 
   constructor (props) {
@@ -22,7 +28,8 @@ export default class Main extends Component {
     this.state = {
       searchText: '',
       selectedClient: {},
-      clientIsSelected: false
+      clientIsSelected: false,
+      clientsData: DEMO_OPTIONS
     }
   }
 
@@ -31,7 +38,12 @@ export default class Main extends Component {
   }
 
   selectClient(data) {
-    console.log(data);
+    let newstate = {client: {...data}}
+    console.log('new state from main', newstate)
+    stateAction.setState(newstate)
+    let dataStore = store.getState()
+    console.log('data from store', dataStore.state)
+
     this.setState({selectedClient: data})
     this.setState({clientIsSelected: true})
   }
@@ -116,7 +128,7 @@ export default class Main extends Component {
               />
             </View>
             <View style={{flex: 1, height: 50,  margin: 5}}>
-              <DropdownMenu onPress={(data) => this.selectClient(data)}/>
+              <DropdownMenu optionList={this.state.clientsData} onPress={(data) => this.selectClient(data)}/>
             </View>
           </View>
 

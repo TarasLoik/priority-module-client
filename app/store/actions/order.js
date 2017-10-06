@@ -6,10 +6,16 @@ const order = {
   create(data) {
     store.dispatch({
       type: types.order.create,
-      payload: data
+      payload: {...data}
     })
   },
 
-};
+  getOrders() {
+    store.dispatch({
+      type: types.order.getOrders,
+    })
+  }
 
-export default order;
+}
+
+export default order

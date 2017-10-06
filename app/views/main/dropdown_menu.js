@@ -9,15 +9,10 @@ import ModalDropdown from 'react-native-modal-dropdown';
 
 import styles from '../../styles/index.js';
 
-//initial Data is only for tests
-import initialData from '../../store/initial_data';
-const DEMO_OPTIONS = initialData.demo_clients
-
 export default class DropdownMenu extends Component {
 
   constructor(props) {
     super(props);
-    this.data = DEMO_OPTIONS;
     this.state = {
       selectedRow: {}
     }
@@ -43,7 +38,7 @@ export default class DropdownMenu extends Component {
         <ModalDropdown
           style={styles.dropdownButton}
           dropdownStyle={styles.dropdownList}
-          options={this.data}
+          options={this.props.optionList}
           renderRow={this.renderRow}
           onSelect={(idx, value) => this.selectRow(idx, value)}
         >

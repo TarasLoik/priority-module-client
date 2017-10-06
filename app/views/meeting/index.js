@@ -16,17 +16,25 @@ const {width, height} = Dimensions.get('window');
 
 import DiscountView from './discount_setting'
 import ResultView from './result_setting'
-//import order from '../../store/actions/order'
+import order from '../../store/actions/order'
+import store from '../../store'
+
 export default class MeetingView extends Component {
 
   constructor (props) {
     super (props);
     this.state = {
       discountTab: false,
+      initialState: {},
       client: this.props.client,
-      field: {},
-      discounts: []
+      field: null,
+      discounts: 0,
     }
+  }
+
+  componentWillMount() {
+    let state = store.getState()
+    console.log('state from meeting --> ', state.state)
   }
 
   setViewMode(mode) {
@@ -44,29 +52,32 @@ export default class MeetingView extends Component {
       return (
         <DiscountView
           data={this.state}
-          discounts={this.setDiscount}
+          discounts={data => this.setDiscount}
         />
       )
     } else {
       return (
         <ResultView
           data={this.state}
-          setData={this.setField}
         />
       )
     }
   }
 
   submit() {
-    Actions.total(
+    /*Actions.total(
       {
         client: this.state.client,
         field: this.state.field,
         products: this.state.products,
         discount: this.state.discounts
       }
-    )
-    //order.create('from meeting')
+    )*/
+    order.create({
+      clientID: this.state.client.number,
+      info: this.state.field,
+      discounts: this.state.discounts
+    })
   }
 
   render() {
@@ -105,7 +116,6 @@ export default class MeetingView extends Component {
         {/*Bottom container(Button submit)*/}
         <View style={{ width: width, height: 100, alignItems: 'center', justifyContent: 'center', padding: 20}}>
           <Button
-            disabled={this.state.discountTab}
             style={styles.button}
             kind='squared'
             theme={themes.buttonTheme}
