@@ -58,7 +58,7 @@ export default class LoginView extends Component {
           />
           <View style={styles.buttonLoginView}>
             <Button
-              style={styles.button}
+              style={[styles.button, {width: 150}]}
               kind='squared'
               onPress={this.login}
               theme={themes.buttonTheme}

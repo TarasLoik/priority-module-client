@@ -33,11 +33,9 @@ export default class DiscountView extends Component {
     }
   }
 
-  result() {
-    let a = this.state.clientDiscount;
-    let b = this.state.productDiscount;
-    let result = a + b;
-    this.props.discount(result)
+  result(a, b) {
+    //this.props.discounts(Number.parseInt(a) + Number.parseInt(b));
+    return (Number.parseInt(a) + Number.parseInt(b));
   }
 
   renderPickerClient(show) {
@@ -92,12 +90,12 @@ export default class DiscountView extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={{marginTop: 20}}>
+        <View style={[styles.container, {marginTop: 20}]}>
 
           <View style={{flex: 1, width: width - 60}}>
             <View style={{marginTop: 15, borderBottomWidth: 2, borderColor: colors.background_dark}}>
               <View style={[styles.container, {height: 45, borderRadius: 4, backgroundColor: colors.background}]}>
-                <TouchableOpacity onPress={this.renderPickerClient(true)}>
+                <TouchableOpacity onPress={() => this.renderPickerClient(true)}>
                   <View>
                     <Text style={[styles.textGrey, {color: colors.app_orange}]}>הנחות למשפחה</Text>
                   </View>
@@ -115,8 +113,6 @@ export default class DiscountView extends Component {
               </View>
 
             </View>
-
-
 
             <View style={{marginTop: 15, borderBottomWidth: 2, borderColor: colors.background_dark}}>
 
@@ -140,8 +136,15 @@ export default class DiscountView extends Component {
           </View>
           {this.renderPickerClient(this.state.showPicker)}
           {this.renderPickerProd(this.state.showPicker)}
+          <View style={{flexDirection: 'row', marginTop: 20, height: 20, alignSelf: 'center'}}>
+            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+              <Text style={styles.textGrey}>Discount result:</Text>
+            </View>
+            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+              <Text style={[styles.textBigDark]}>{this.result(this.state.productDiscount, this.state.clientDiscount)}</Text>
+            </View>
 
-
+          </View>
         </View>
       </View>
     )
