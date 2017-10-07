@@ -36,10 +36,6 @@ export default class Main extends Component {
     this.setState({clientsData: store.getState().dropdown.items})
   }
 
-  componentWillUnmount() {
-
-  }
-
   goToMeeting() {
     console.log(store.getState())
     Actions.meeting({client: this.state.selectedClient})
@@ -51,7 +47,9 @@ export default class Main extends Component {
   }
 
   showLastReports() {
-    Actions.report()
+    Actions.report({
+      orders: this.state.selectedClient.orders
+    })
   }
 
   renderClientData() {
@@ -90,7 +88,7 @@ export default class Main extends Component {
               <Text style={styles.descText}>{this.state.selectedClient.contacts.fax}</Text>
             </View>
             <View style={styles.btnReports}>
-              <TouchableOpacity onPress={this.showLastReports}>
+              <TouchableOpacity onPress={this.showLastReports.bind(this)}>
                 <Text style={styles.buttonTextTint}>LAST REPORTS{/*דוחות קודמות*/}</Text>
               </TouchableOpacity>
             </View>

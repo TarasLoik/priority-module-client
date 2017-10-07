@@ -6,7 +6,7 @@ export default {
     create: 'CREATE_ORDER',
     getOrders: 'GET_ORDERS',
   },
-  client: {
+  clients: {
 
   },
   discount: {
@@ -20,6 +20,9 @@ export default {
     selectItem: 'SELECT_ITEM',
     getItems: 'GET_ITEMS'
   },
+  notes: {
+    addNote: 'ADD_NOTE'
+  }
 
 }
 
