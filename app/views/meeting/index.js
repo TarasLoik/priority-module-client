@@ -34,7 +34,7 @@ export default class MeetingView extends Component {
 
   componentWillMount() {
     let state = store.getState()
-    console.log('state from meeting --> ', state.state)
+    console.log('state from meeting --> ', store.getState())
   }
 
   setViewMode(mode) {

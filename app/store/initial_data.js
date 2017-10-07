@@ -10,7 +10,38 @@ let demo_clients = [
     'contacts': {
       'phone': '+972-1800-000-654',
       'fax': '+972-1800-000-654'
-    }
+    },
+    'orders' : [
+      {
+        'date': '01/01/2016',
+        'field': 'שחר חיים 1',
+        'product': 'UREA(NPK:46-0-0)',
+        'discount': 0,
+        'price': 1000
+      },
+      {
+        'date': '01/02/2016',
+        'field': 'שחר חיים 1',
+        'product': 'UREA(NPK:46-0-0)',
+        'discount': 5,
+        'price': 950
+      },
+      {
+        'date': '01/03/2016',
+        'field': 'שחר חיים 1',
+        'product': 'UREA(NPK:46-0-0)',
+        'discount': 10,
+        'price': 900
+      },
+      {
+        'date': '01/04/2016',
+        'field': 'שחר חיים 1',
+        'product': 'UREA(NPK:46-0-0)',
+        'discount': 20,
+        'price': 800
+      },
+
+    ]
 
   },
   {

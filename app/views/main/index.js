@@ -15,35 +15,37 @@ import themes from '../../styles/themes';
 
 const {width, height} = Dimensions.get('window');
 
-import stateAction from '../../store/actions/state'
+import dropdown from '../../store/actions/dropdown'
 import store from '../../store'
-
-import initialData from '../../store/initial_data';
-const DEMO_OPTIONS = initialData.demo_clients
 
 export default class Main extends Component {
 
   constructor (props) {
+    console.log(store.getState())
     super (props)
     this.state = {
       searchText: '',
       selectedClient: {},
       clientIsSelected: false,
-      clientsData: DEMO_OPTIONS
+      clientsData: [],
     }
   }
 
+  componentWillMount() {
+    dropdown.getItems('demo_clients')
+    this.setState({clientsData: store.getState().dropdown.items})
+  }
+
+  componentWillUnmount() {
+
+  }
+
   goToMeeting() {
+    console.log(store.getState())
     Actions.meeting({client: this.state.selectedClient})
   }
 
   selectClient(data) {
-    let newstate = {client: {...data}}
-    console.log('new state from main', newstate)
-    stateAction.setState(newstate)
-    let dataStore = store.getState()
-    console.log('data from store', dataStore.state)
-
     this.setState({selectedClient: data})
     this.setState({clientIsSelected: true})
   }
@@ -128,7 +130,9 @@ export default class Main extends Component {
               />
             </View>
             <View style={{flex: 1, height: 50,  margin: 5}}>
-              <DropdownMenu optionList={this.state.clientsData} onPress={(data) => this.selectClient(data)}/>
+              <DropdownMenu
+                optionList={this.state.clientsData}
+                onPress={(data) => this.selectClient(data)}/>
             </View>
           </View>
 

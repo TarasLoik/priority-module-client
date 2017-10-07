@@ -34,7 +34,6 @@ export default class ResultView extends Component {
       isAddedField: false,
       modalVisible: false
     }
-    console.log(this.props.data.client.fields)
   }
 
   setModalVisible(visible) {

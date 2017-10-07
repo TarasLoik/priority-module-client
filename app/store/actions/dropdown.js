@@ -11,6 +11,12 @@ const dropdown = {
         item: item
       }
     })
+  },
+  getItems(dataType) {
+    store.dispatch({
+      type: types.dropDown.getItems,
+      payload: dataType
+    })
   }
 
 }
