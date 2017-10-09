@@ -59,7 +59,7 @@ export default class DiscountView extends Component {
     this.props.addDiscount(data)
   }
 
-  renderPickerClient(show) {1
+  renderPickerClient(show) {
     let data = [];
     for (let i = this.state.clDiscMin; i <= this.state.clDiscMax; i++) {data.push(i)}
     Picker.init({
