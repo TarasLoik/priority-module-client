@@ -19,6 +19,9 @@ const {width, height} = Dimensions.get('window');
 import initialData from '../../store/initial_data';
 const DEMO_OPTIONS = initialData.products
 
+import store from '../../store'
+import meetingAction from '../../store/actions/meeting'
+
 
 export default class ResultView extends Component {
 
@@ -27,12 +30,9 @@ export default class ResultView extends Component {
     this.state = {
       fields: this.props.data.client.fields,
       tempProducts: DEMO_OPTIONS,
-      addedField: {
-        name: '',
-        fieldProducts: []
-      },
       isAddedField: false,
-      modalVisible: false
+      modalVisible: false,
+      order: store.getState().meeting,
     }
   }
 
@@ -60,12 +60,12 @@ export default class ResultView extends Component {
   }
 
   renderFieldInfo() {
-    if (this.state.isAddedField) {
+    if ( this.state.order.field.length > 0) {
       return (
         <View>
           <View style={[styles.addContainer]}>
             <Text style={styles.descText}>
-              {this.state.addedField.name}
+              {this.state.order.field}
             </Text>
             <View style={{marginRight: 5}}>
               <TouchableOpacity onPress={() => this.setModalVisible(true)}>
@@ -81,36 +81,37 @@ export default class ResultView extends Component {
   }
 
   renderProductInfo() {
-    let data = this.state.addedField.fieldProducts
-    return (
-      data.map((item) => {
-        return (
-          <View style={styles.addContainer}>
-            <Text style={styles.descText}>
-              {item}
-            </Text>
-          </View>
-        )
-      })
-    )
+    let data = this.state.order.products
+    if (data) {
+      return (
+        data.map((item) => {
+          return (
+            <View style={styles.addContainer}>
+              <Text style={styles.descText}>
+                {item}
+              </Text>
+            </View>
+          )
+        })
+      )
+    }
   }
 
   selectField(ind, data) {
-    let fieldProducts = [];
-    let field = this.state.addedField;
-    field.name = data;
-    field.fieldProducts = fieldProducts;
-    this.setState({addedField: field, isAddedField: true});
-    //console.log(this.state.addedField)
+    let order = this.state.order
+    order.field = data
+    this.setState({isAddedField: true})
+    meetingAction.setInfo(order)
+    console.log('meting state from store', store.getState().meeting)
+
   }
 
   selectProduct(data) {
-    let arr = (this.state.addedField.fieldProducts);
-    arr.push(data);
-    let field = this.state.addedField;
-    field.fieldProducts = arr;
-    this.setState({addedField: field});
-    this.setModalVisible(false)
+    let products = this.state.order.products
+    products.push(data)
+    meetingAction.setInfo({products: products})
+    console.log('meting state from store', store.getState().meeting)
+    this.setState({modalVisible: false})
   }
 
   render() {
@@ -141,7 +142,7 @@ export default class ResultView extends Component {
           </View>
 
           <View>
-            {this.renderFieldInfo(this.state.addedField)}
+            {this.renderFieldInfo(this.state.order.field)}
           </View>
           <View>
             {this.renderProductInfo()}

@@ -6,18 +6,16 @@ export default {
     create: 'CREATE_ORDER',
     getOrders: 'GET_ORDERS',
   },
-  clients: {
-
+  meeting: {
+    setInfo: 'SET_INFO'
+  },
+  client: {
+    getClient: 'GET_CLIENT'
   },
   discount: {
-
-  },
-
-  product: {
-
+    getDiscount: 'GET_DISCOUNT'
   },
   dropDown: {
-    selectItem: 'SELECT_ITEM',
     getItems: 'GET_ITEMS'
   },
   notes: {

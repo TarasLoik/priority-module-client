@@ -10,6 +10,8 @@ import {
   Dimensions
 } from 'react-native'
 
+import store from '../../store'
+import meetingAction from '../../store/actions/meeting'
 
 
 import Picker from 'react-native-picker';
@@ -23,20 +25,38 @@ export default class DiscountView extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      clientDiscount: this.props.data.client.discount,
-      clDiscMin: 0,
+      clDiscMin: this.props.data.client.discount,
       clDiscMax: 25,
       prDiscMin: 0,
       prDiscMax: 25,
-      productDiscount: 0,
       showPicker: false,
+      order: store.getState().meeting
     };
 
   }
 
-  result(a, b) {
-    this.props.discounts(Number.parseInt(a) + Number.parseInt(b));
-    return (Number.parseInt(a) + Number.parseInt(b));
+  result() {
+    let discount = this.state.order.clientDiscount + this.state.order.productDiscount
+    return discount
+  }
+
+  setClientDiscount(value) {
+    let order = this.state.order
+    order.clientDiscount = Number.parseInt(value)
+    this.setState({order: order})
+    meetingAction.setInfo(order)
+  }
+
+  setProdDiscount(value) {
+    let order = this.state.order
+    order.productDiscount = Number.parseInt(value)
+    this.setState({order: order})
+    meetingAction.setInfo(order)
+    console.log('dis view', store.getState())
+  }
+
+  test(data) {
+    this.props.addDiscount(data)
   }
 
   renderPickerClient(show) {1
@@ -56,7 +76,7 @@ export default class DiscountView extends Component {
       pickerToolBarFontSize: 20,
       pickerFontSize: 25,
       pickerFontColor: [255, 165, 124, 1], //orange
-      onPickerConfirm: (value) => this.setState({clientDiscount: value})
+      onPickerConfirm: (value) => this.setClientDiscount(value)
     });
     if(show) {
       return Picker.show()
@@ -80,7 +100,7 @@ export default class DiscountView extends Component {
       pickerToolBarFontSize: 20,
       pickerFontSize: 25,
       pickerFontColor: [255, 165, 124, 1], //orange
-      onPickerConfirm: value => this.setState({productDiscount: value})
+      onPickerConfirm: value => this.setProdDiscount(value)
     });
     if(show) {
       return Picker.show()
@@ -108,7 +128,9 @@ export default class DiscountView extends Component {
                   <Text>max:{this.state.clDiscMax}</Text>
                 </View>
                 <View>
-                  <Text style={[styles.titleStyle, {fontSize: 22}]}>{this.state.clientDiscount}</Text>
+                  <Text style={[styles.titleStyle, {fontSize: 22}]}>
+                    {this.state.order.clientDiscount}
+                  </Text>
                 </View>
 
               </View>
@@ -130,7 +152,7 @@ export default class DiscountView extends Component {
                   <Text>max:{this.state.prDiscMax}</Text>
                 </View>
                 <View>
-                  <Text style={[styles.titleStyle, {fontSize: 22}]}>{this.state.productDiscount}</Text>
+                  <Text style={[styles.titleStyle, {fontSize: 22}]}>{this.state.order.productDiscount}</Text>
                 </View>
               </View>
             </View>
@@ -142,7 +164,7 @@ export default class DiscountView extends Component {
               <Text style={styles.textGrey}>Discount result:</Text>
             </View>
             <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-              <Text style={[styles.textBigDark]}>{this.result(this.state.productDiscount, this.state.clientDiscount)}</Text>
+              <Text style={[styles.textBigDark]}>{this.result()}</Text>
             </View>
 
           </View>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Router, Scene, Actions, ActionConst } from 'react-native-router-flux'
+import { Router, Scene, Actions, Tabs, ActionConst } from 'react-native-router-flux'
 import { Provider } from 'react-redux'
 
 import store from './store'

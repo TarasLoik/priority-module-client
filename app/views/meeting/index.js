@@ -4,7 +4,8 @@ import {
   Text,
   View,
   ScrollView,
-  Dimensions
+  Dimensions,
+  Modal
 } from 'react-native';
 
 import { Switcher, SegmentedControlButton, Button} from 'nachos-ui';
@@ -17,6 +18,7 @@ const {width, height} = Dimensions.get('window');
 import DiscountView from './discount_setting'
 import ResultView from './result_setting'
 import order from '../../store/actions/order'
+import meeting from '../../store/actions/meeting'
 import store from '../../store'
 
 export default class MeetingView extends Component {
@@ -25,26 +27,19 @@ export default class MeetingView extends Component {
     super (props);
     this.state = {
       discountTab: false,
-      initialState: {},
       client: this.props.client,
-      field: null,
-      discounts: 0,
+      order: store.getState().meeting
     }
-  }
-
-  componentWillMount() {
-    let state = store.getState()
-    console.log('state from meeting --> ', store.getState())
   }
 
   setViewMode(mode) {
     (mode === 'Discount')
       ? this.setState({discountTab: true})
-      : this.setState({discountTab: false});
+      : this.setState({discountTab: false})
   }
 
-  setDiscount(data) {
-    this.setState({discounts: data})
+  addDiscount (data) {
+    console.log('function add discount ->', data)
   }
 
   renderMainInfo() {
@@ -52,7 +47,6 @@ export default class MeetingView extends Component {
       return (
         <DiscountView
           data={this.state}
-          discounts={data => this.setDiscount}
         />
       )
     } else {

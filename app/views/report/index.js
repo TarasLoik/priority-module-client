@@ -14,7 +14,7 @@ export default class ReportView extends Component {
   }
 
   render() {
-    let orders = this.props.orders
+    let orders = this.props.orders //TODO - add handling if client haven`t orders
     return (
       <ScrollView>
         <View style={{padding: 10}}>
