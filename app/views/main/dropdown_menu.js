@@ -43,7 +43,7 @@ export default class DropdownMenu extends Component {
           onSelect={(idx, value) => this.selectRow(idx, value)}
         >
           <Text style={styles.buttonText}>
-            {/*חפש*/}SEARCH
+            חפש
           </Text>
         </ModalDropdown>
       </View>

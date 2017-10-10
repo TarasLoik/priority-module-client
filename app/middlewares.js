@@ -31,8 +31,7 @@ export const middlewares = [
   {
     key: 'report',
     component: ReportView,
-    //title: 'דוחות קודמות',
-    title: 'LAST REPORTS',
+    title: 'דוחות קודמות',
     titleStyle: styles.titleStyle,
     navigationBarStyle: styles.navBarStyles,
     barButtonIconStyle: styles.titleStyle,
@@ -42,8 +41,8 @@ export const middlewares = [
   {
     key: 'total',
     component: TotalResultView,
-    //title: 'מֵידָע',
-    title: 'RESULT',
+    title: 'מֵידָע',
+    //title: 'RESULT',
     hideNavBar: false,
   }
 ]

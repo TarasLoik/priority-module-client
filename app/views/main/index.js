@@ -45,13 +45,15 @@ export default class Main extends Component {
   }
 
   selectClient(data) {
+    console.log(data)
     this.setState({selectedClient: data})
     this.setState({clientIsSelected: true})
+    console.log(this.state.selectedClient)
   }
 
   showLastReports() {
     Actions.report({
-      orders: this.state.selectedClient.orders
+      client: this.state.selectedClient
     })
   }
 
@@ -65,15 +67,15 @@ export default class Main extends Component {
               <Text style={styles.textBigDark}>{this.state.selectedClient.name}</Text>
             </View>
             <View>
-              <Text style={styles.textGrey}>{/*אזור:*/}Region:</Text>
+              <Text style={styles.textGrey}>אזור:</Text>
               <Text style={styles.descText}>{this.state.selectedClient.region}</Text>
             </View>
             <View>
-              <Text style={styles.textGrey}>{/*עיר:*/}City:</Text>
+              <Text style={styles.textGrey}>עיר:</Text>
               <Text style={styles.descText}>{this.state.selectedClient.city}</Text>
             </View>
             <View>
-              <Text style={styles.textGrey}>{/*מוצרים:*/}Products:</Text>
+              <Text style={styles.textGrey}>מוצרים:</Text>
               <Text style={styles.descText}>מוצר1</Text>
               <Text style={styles.descText}>מוצר2</Text>
             </View>
@@ -86,13 +88,13 @@ export default class Main extends Component {
               <Text style={styles.descText}>{this.state.selectedClient.number}</Text>
             </View>
             <View>
-              <Text style={styles.textGrey}>{/*אנשי קשר*/}Contacts:</Text>
+              <Text style={styles.textGrey}>אנשי קשר</Text>
               <Text style={styles.descText}>{this.state.selectedClient.contacts.phone}</Text>
               <Text style={styles.descText}>{this.state.selectedClient.contacts.fax}</Text>
             </View>
             <View style={styles.btnReports}>
               <TouchableOpacity onPress={this.showLastReports.bind(this)}>
-                <Text style={styles.buttonTextTint}>LAST REPORTS{/*דוחות קודמות*/}</Text>
+                <Text style={styles.buttonTextTint}>דוחות קודמות</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -103,7 +105,7 @@ export default class Main extends Component {
         <View style={{flex: 1}}>
           <View style={styles.container}>
             <Text style={styles.textMassage}>
-              {/*בחר לקוח*/}client is not selected
+              בחר לקוח
             </Text>
           </View>
         </View>
@@ -125,7 +127,7 @@ export default class Main extends Component {
                 autoCapitalize='none'
                 value={this.state.searchText}
                 underlineColorAndroid='transparent'
-                placeholder="Search"
+                placeholder="שחר"
                 onChangeText={(searchText) => this.setState({searchText})}
               />
             </View>
@@ -147,7 +149,7 @@ export default class Main extends Component {
               kind='squared'
               theme={themes.buttonTheme}
               onPress={this.goToMeeting.bind(this)}
-            >go to meeting</Button>
+            >להתחיל פגישה</Button>
           </View>
 
         </View>

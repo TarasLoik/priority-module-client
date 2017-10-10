@@ -48,10 +48,8 @@ export default class TotalResultView extends Component {
   submit() {
     let order = {...this.state.meetingInfo}
     order.notes = this.state.notes
-    console.log('order', order)
     orderAction.create(order)
-    meetingAction.clear()
-    //Alert.alert('Result submitted!');
+    Alert.alert('Result submitted!');
     Actions.main()
   }
 
@@ -83,40 +81,40 @@ export default class TotalResultView extends Component {
           <ScrollView>
             <View style={{borderBottomWidth: 1, borderColor: colors.app_red, marginBottom: 10}}>
               <View style={{ borderColor: colors.dark_button}}>
-                <Text style={{fontSize: 18, color: colors.background}}>Client:</Text>
+                <Text style={{fontSize: 18, color: colors.background}}>לקוח:</Text>
                 <Text style={{fontSize: 20, color: colors.dark_button}}>{this.props.client.name}</Text>
                 <Text style={{fontSize: 20, color: colors.dark_button}}>{this.props.client.number}</Text>
               </View>
               <View style={{ borderColor: colors.dark_button}}>
-                <Text style={{fontSize: 18, color: colors.background}}>Field:</Text>
+                <Text style={{fontSize: 18, color: colors.background}}>שטח:</Text>
                 <Text style={{fontSize: 20, color: colors.dark_button}}>{this.state.meetingInfo.field}</Text>
               </View>
               <View style={{ borderColor: colors.dark_button}}>
-                <Text style={{fontSize: 18, color: colors.background}}>Products:</Text>
+                <Text style={{fontSize: 18, color: colors.background}}>מוצר:</Text>
                 {this.renderProducts()}
               </View>
               <View style={{ borderColor: colors.dark_button}}>
-                <Text style={{fontSize: 18, color: colors.background}}>Client Discount:</Text>
+                <Text style={{fontSize: 18, color: colors.background}}>הנחות: למשפחה</Text>
                 <Text style={{fontSize: 20, color: colors.dark_button}}>{this.state.meetingInfo.clientDiscount}</Text>
               </View>
               <View style={{ borderColor: colors.dark_button}}>
-                <Text style={{fontSize: 18, color: colors.background}}>Product Discount:</Text>
+                <Text style={{fontSize: 18, color: colors.background}}>הנחות:</Text>
                 <Text style={{fontSize: 20, color: colors.dark_button}}>{this.state.meetingInfo.productDiscount}</Text>
               </View>
               <View style={{ borderColor: colors.dark_button}}>
-                <Text style={{fontSize: 18, color: colors.background}}>Total Discount:</Text>
+                <Text style={{fontSize: 18, color: colors.background}}>הנחות:</Text>
                 <Text style={{fontSize: 20, color: colors.dark_button}}>
                   {this.state.meetingInfo.productDiscount + this.state.meetingInfo.clientDiscount}
                 </Text>
               </View>
               <View style={{ borderColor: colors.dark_button}}>
-                <Text style={{fontSize: 18, color: colors.background}}>Total Price:</Text>
+                <Text style={{fontSize: 18, color: colors.background}}>מחיר: סופי</Text>
                 <Text style={{fontSize: 25, color: colors.dark_button}}>
                   0
                 </Text>
               </View>
               <View style={{ borderColor: colors.dark_button}}>
-                <Text style={{fontSize: 18, color: colors.background}}>Notes:</Text>
+                <Text style={{fontSize: 18, color: colors.background}}>הוסף: מידע</Text>
                 <TouchableOpacity onPress={() => this.setState({modalVisible: true})}>
                   <Text
                     ellipsizeMode='tail'
@@ -159,7 +157,7 @@ export default class TotalResultView extends Component {
                 kind='squared'
                 theme={themes.buttonTheme}
                 onPress={() => {this.saveNotes()}}
-              >SAVE</Button>
+              >הוסף מידע</Button>
               <Button
                 style={[styles.button, {flex: 1, margin: 5}]}
                 kind='squared'
@@ -177,13 +175,13 @@ export default class TotalResultView extends Component {
             kind='squared'
             theme={themes.buttonTheme}
             onPress={() => {this.setState({modalVisible: true})}}
-          >ADD NOTES{/*הוסף מידע*/}</Button>
+          >הוסף מידע</Button>
           <Button
             style={[styles.button, {margin: 5}]}
             kind='squared'
             theme={themes.buttonTheme}
             onPress={this.submit.bind(this)}
-          >SUBMIT{/*שלח*/}</Button>
+          >שלח</Button>
         </View>
       </View>
     )

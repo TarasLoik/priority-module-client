@@ -41,7 +41,7 @@ export default class LoginView extends Component {
             autoCapitalize='none'
             underlineColorAndroid='transparent'
             value={this.state.email}
-            placeholder='Email'
+            placeholder='מִשׁתַמֵשׁ'
             onChangeText={(email) => this.setState({email})}
           />
           <Input
@@ -53,7 +53,7 @@ export default class LoginView extends Component {
             autoCapitalize='none'
             underlineColorAndroid='transparent'
             value={this.state.password}
-            placeholder='Password'
+            placeholder='סיסמה'
             onChangeText={(password) => this.setState({password})}
           />
           <View style={styles.buttonLoginView}>
@@ -62,7 +62,7 @@ export default class LoginView extends Component {
               kind='squared'
               onPress={this.login}
               theme={themes.buttonTheme}
-            >Login</Button>
+            >שחר</Button>
           </View>
         </View>
       </Image>

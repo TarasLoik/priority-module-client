@@ -31,10 +31,6 @@ export default class MeetingView extends Component {
     }
   }
 
-  componentWillMount() {
-    //meetingAction.clear()
-  }
-
   componentDidMount() {
     meetingAction.setInfo({clientDiscount: this.props.client.discount})
   }
@@ -85,14 +81,12 @@ export default class MeetingView extends Component {
             >
               <SegmentedControlButton
                 value='Setting'
-                //text='הוסף מידע'
-                text='INFO'
+                text='הוסף מידע'
                 theme={themes.segmentedControlButtonTheme}
               />
               <SegmentedControlButton
                 value='Discount'
-                //text='הנחות'
-                text='DISCOUNTS'
+                text='הנחות'
                 theme={themes.segmentedControlButtonTheme}
               />
             </Switcher>
@@ -107,7 +101,7 @@ export default class MeetingView extends Component {
             kind='squared'
             theme={themes.buttonTheme}
             onPress={this.submit.bind(this)}
-          >{/*שלח*/}SUBMIT</Button>
+          >שלח</Button>
         </View>
       </View>
     )
