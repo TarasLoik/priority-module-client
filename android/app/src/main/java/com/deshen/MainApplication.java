@@ -1,4 +1,4 @@
-package com.moduleclient;
+package com.deshen;
 
 import android.app.Application;
 

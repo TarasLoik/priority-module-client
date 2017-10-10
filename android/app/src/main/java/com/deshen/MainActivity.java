@@ -1,4 +1,4 @@
-package com.moduleclient;
+package com.deshen;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,7 +10,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "ModuleClient";
+        return "Deshen";
     }
 
     //I18nUtil sharedI18nUtilInstance = I18nUtil.getInstance();
