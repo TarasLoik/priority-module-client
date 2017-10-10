@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import { Actions, ActionConst } from 'react-native-router-flux'
 import {
   Text,
   View,
@@ -9,16 +8,14 @@ import {
   Alert,
   Dimensions
 } from 'react-native'
-
-import store from '../../store'
-import meetingAction from '../../store/actions/meeting'
-
-
 import Picker from 'react-native-picker';
 
 import styles from '../../styles/index.js';
 import colors from '../../styles/colors';
 const {width, height} = Dimensions.get('window');
+
+import store from '../../store'
+import meetingAction from '../../store/actions/meeting'
 
 export default class DiscountView extends Component {
 
@@ -32,7 +29,6 @@ export default class DiscountView extends Component {
       showPicker: false,
       order: store.getState().meeting
     };
-
   }
 
   result() {
@@ -44,6 +40,7 @@ export default class DiscountView extends Component {
     let order = this.state.order
     order.clientDiscount = Number.parseInt(value)
     this.setState({order: order})
+    this.setState({clDiscMin: Number.parseInt(value)})
     meetingAction.setInfo(order)
   }
 
@@ -52,11 +49,6 @@ export default class DiscountView extends Component {
     order.productDiscount = Number.parseInt(value)
     this.setState({order: order})
     meetingAction.setInfo(order)
-    console.log('dis view', store.getState())
-  }
-
-  test(data) {
-    this.props.addDiscount(data)
   }
 
   renderPickerClient(show) {
@@ -108,11 +100,9 @@ export default class DiscountView extends Component {
   }
 
   render() {
-
     return (
       <View style={styles.container}>
         <View style={[styles.container, {marginTop: 20}]}>
-
           <View style={{flex: 1, width: width - 60}}>
             <View style={{marginTop: 15, borderBottomWidth: 2, borderColor: colors.background_dark}}>
               <View style={[styles.container, {height: 45, borderRadius: 4, backgroundColor: colors.background}]}>
@@ -129,16 +119,12 @@ export default class DiscountView extends Component {
                 </View>
                 <View>
                   <Text style={[styles.titleStyle, {fontSize: 22}]}>
-                    {this.state.order.clientDiscount}
+                    {this.state.clDiscMin}
                   </Text>
                 </View>
-
               </View>
-
             </View>
-
             <View style={{marginTop: 15, borderBottomWidth: 2, borderColor: colors.background_dark}}>
-
               <View style={[styles.container, {height: 45, borderRadius: 4, backgroundColor: colors.background}]}>
                 <TouchableOpacity onPress={() => this.renderPickerProd(true)}>
                   <View>
@@ -166,7 +152,6 @@ export default class DiscountView extends Component {
             <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
               <Text style={[styles.textBigDark]}>{this.result()}</Text>
             </View>
-
           </View>
         </View>
       </View>

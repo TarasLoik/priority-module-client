@@ -17,11 +17,11 @@ const {width, height} = Dimensions.get('window');
 
 import dropdown from '../../store/actions/dropdown'
 import store from '../../store'
+import orderApi from '../storage/orders'
 
 export default class Main extends Component {
 
   constructor (props) {
-    console.log(store.getState())
     super (props)
     this.state = {
       searchText: '',
@@ -37,7 +37,6 @@ export default class Main extends Component {
   }
 
   goToMeeting() {
-    console.log(store.getState())
     Actions.meeting({client: this.state.selectedClient})
   }
 
@@ -50,6 +49,10 @@ export default class Main extends Component {
     Actions.report({
       orders: this.state.selectedClient.orders
     })
+  }
+
+  showOrders() {
+
   }
 
   renderClientData() {

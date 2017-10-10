@@ -102,29 +102,23 @@ export default class ResultView extends Component {
     order.field = data
     this.setState({isAddedField: true})
     meetingAction.setInfo(order)
-    console.log('meting state from store', store.getState().meeting)
-
   }
 
   selectProduct(data) {
     let products = this.state.order.products
     products.push(data)
     meetingAction.setInfo({products: products})
-    console.log('meting state from store', store.getState().meeting)
     this.setState({modalVisible: false})
   }
 
   render() {
     return (
       <View style={{flex: 1}}>
-
         <View style={{margin: 20}}>
           <Text style={{fontSize: 18, color: 'red'}}>{this.props.data.client.number}</Text>
           <Text style={{fontSize: 24, color: 'black'}}>{this.props.data.client.name}</Text>
         </View>
-
         <View>
-
           <View style={{marginBottom: 5}}>
             <View style={[styles.dropdownButton, {alignItems: 'flex-end', paddingRight: 15}]}>
               <ModalDropdown
@@ -140,7 +134,6 @@ export default class ResultView extends Component {
               </ModalDropdown>
             </View>
           </View>
-
           <View>
             {this.renderFieldInfo(this.state.order.field)}
           </View>
@@ -164,14 +157,10 @@ export default class ResultView extends Component {
                   {(this.state.modalVisible) ? this.renderProducts() : null }
                 </View>
               </ScrollView>
-
             </Modal>
           </View>
-
         </View>
-
       </View>
     )
   }
-
 }

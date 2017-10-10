@@ -4,7 +4,7 @@ export default {
   },
   order: {
     create: 'CREATE_ORDER',
-    getOrders: 'GET_ORDERS',
+    updateOrder: 'UPDATE_ORDER',
   },
   meeting: {
     setInfo: 'SET_INFO'
@@ -12,15 +12,8 @@ export default {
   client: {
     getClient: 'GET_CLIENT'
   },
-  discount: {
-    getDiscount: 'GET_DISCOUNT'
-  },
   dropDown: {
     getItems: 'GET_ITEMS'
   },
-  notes: {
-    addNote: 'ADD_NOTE'
-  }
-
 }
 

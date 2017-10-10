@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import { Actions, ActionConst } from 'react-native-router-flux'
+import React, { Component } from 'react'
+import { Actions } from 'react-native-router-flux'
 import {
   Text,
   View,
@@ -17,9 +17,8 @@ const {width, height} = Dimensions.get('window');
 
 import DiscountView from './discount_setting'
 import ResultView from './result_setting'
-import order from '../../store/actions/order'
-import meeting from '../../store/actions/meeting'
 import store from '../../store'
+import meetingAction from '../../store/actions/meeting'
 
 export default class MeetingView extends Component {
 
@@ -32,14 +31,14 @@ export default class MeetingView extends Component {
     }
   }
 
+  componentDidMount() {
+    meetingAction.setInfo({clientDiscount: this.props.client.discount})
+  }
+
   setViewMode(mode) {
     (mode === 'Discount')
       ? this.setState({discountTab: true})
       : this.setState({discountTab: false})
-  }
-
-  addDiscount (data) {
-    console.log('function add discount ->', data)
   }
 
   renderMainInfo() {
@@ -59,19 +58,13 @@ export default class MeetingView extends Component {
   }
 
   submit() {
-    /*Actions.total(
+    let data = store.getState().meeting
+    meetingAction.setInfo(data)
+    Actions.total(
       {
-        client: this.state.client,
-        field: this.state.field,
-        products: this.state.products,
-        discount: this.state.discounts
+        client: this.state.client
       }
-    )*/
-    order.create({
-      clientID: this.state.client.number,
-      info: this.state.field,
-      discounts: this.state.discounts
-    })
+    )
   }
 
   render() {
@@ -101,13 +94,9 @@ export default class MeetingView extends Component {
             </Switcher>
           </View>
         </View>
-
-        {/*Main container*/}
         <ScrollView style={{height: height - 200, width: width - 20}}>
           {this.renderMainInfo()}
         </ScrollView>
-
-        {/*Bottom container(Button submit)*/}
         <View style={{ width: width, height: 100, alignItems: 'center', justifyContent: 'center', padding: 20}}>
           <Button
             style={styles.button}

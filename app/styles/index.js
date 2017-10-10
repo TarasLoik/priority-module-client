@@ -113,6 +113,16 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light_grey,
     borderRadius: BORDER_RADIUS
   },
+  notesInput: {
+    height: 120,
+    padding: 8,
+    marginHorizontal: 5,
+    color: colors.background_dark,
+    fontSize: 20,
+    borderWidth: 2,
+    borderColor: colors.background_dark,
+    backgroundColor: colors.white
+  },
   buttonLoginView: {
     height: 50,
     width: width / 4,

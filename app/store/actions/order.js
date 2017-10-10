@@ -9,13 +9,6 @@ const order = {
       payload: {...data}
     })
   },
-
-  getOrders() {
-    store.dispatch({
-      type: types.order.getOrders,
-    })
-  }
-
 }
 
 export default order

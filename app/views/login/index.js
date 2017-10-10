@@ -11,8 +11,6 @@ import { Button, Input } from 'nachos-ui';
 import styles from '../../styles/index.js';
 import themes from '../../styles/themes';
 
-import orderAction from '../../store/actions/order'
-
 export default class LoginView extends Component {
 
   constructor (props) {
@@ -25,7 +23,6 @@ export default class LoginView extends Component {
 
   login() {
     Actions.main()
-    orderAction.getOrders()
   }
 
   render() {
