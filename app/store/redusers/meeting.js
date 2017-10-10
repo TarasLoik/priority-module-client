@@ -16,6 +16,13 @@ export default function meetingReducer(state = initialState, action) {
         ...state,
         ...data
       }
+    case types.meeting.clear:
+      return {
+        field: '',
+        products: [],
+        clientDiscount: 0,
+        productDiscount: 0,
+      }
     default:
       return state
   }

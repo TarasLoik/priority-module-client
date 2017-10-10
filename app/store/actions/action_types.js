@@ -7,7 +7,8 @@ export default {
     updateOrder: 'UPDATE_ORDER',
   },
   meeting: {
-    setInfo: 'SET_INFO'
+    setInfo: 'SET_INFO',
+    clear: 'CLEAR'
   },
   client: {
     getClient: 'GET_CLIENT'

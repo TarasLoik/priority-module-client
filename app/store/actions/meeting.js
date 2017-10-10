@@ -8,6 +8,12 @@ const meeting = {
       type: types.meeting.setInfo,
       payload: data
     })
+  },
+
+  clear() {
+    store.dispatch({
+      type: types.meeting.clear
+    })
   }
 }
 

@@ -10,17 +10,10 @@ const order = {
       JSON.stringify(listOfOrders));
   },
 
-  async get() {
-    try {
-      const value = await AsyncStorage.getItem('ORDERS');
-      if (value !== null){
-        // We have data!!
-        console.log(JSON.parse(value))
-      }
-    } catch (error) {
-      // Error retrieving data
-    }
-  }
+  async getOrders() {
+    //TODO Add functionality for get orders from AsyncStorage
+  },
+
 
 }
 

@@ -20,6 +20,7 @@ const {width, height} = Dimensions.get('window');
 
 import store from '../../store'
 import orderAction from '../../store/actions/order'
+import meetingAction from '../../store/actions/meeting'
 
 export default class TotalResultView extends Component {
 
@@ -49,6 +50,7 @@ export default class TotalResultView extends Component {
     order.notes = this.state.notes
     console.log('order', order)
     orderAction.create(order)
+    meetingAction.clear()
     //Alert.alert('Result submitted!');
     Actions.main()
   }

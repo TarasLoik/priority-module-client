@@ -5,19 +5,22 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  Modal,
+  AsyncStorage
 } from 'react-native'
 import DropdownMenu from './dropdown_menu'
 import {Input, Button} from 'nachos-ui';
 
 import styles from '../../styles/index.js';
 import themes from '../../styles/themes';
+import colors from '../../styles/colors'
 
 const {width, height} = Dimensions.get('window');
 
 import dropdown from '../../store/actions/dropdown'
 import store from '../../store'
-import orderApi from '../storage/orders'
+import meetingAction from '../../store/actions/meeting'
 
 export default class Main extends Component {
 
@@ -32,6 +35,7 @@ export default class Main extends Component {
   }
 
   componentWillMount() {
+    meetingAction.clear()
     dropdown.getItems('demo_clients')
     this.setState({clientsData: store.getState().dropdown.items})
   }
@@ -49,10 +53,6 @@ export default class Main extends Component {
     Actions.report({
       orders: this.state.selectedClient.orders
     })
-  }
-
-  showOrders() {
-
   }
 
   renderClientData() {
@@ -115,7 +115,6 @@ export default class Main extends Component {
     return (
       <View style={[styles.container, styles.backgroundLight]}>
         <View style={styles.mainViewContainer}>
-
           <View style={[{ width: width, height: 100, flexDirection: 'row'}]}>
             <View style={{flex: 4}}>
               <Input
