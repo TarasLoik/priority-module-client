@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   },
   buttonLoginView: {
     height: 50,
-    width: width / 4,
+    width: width / 3,
     margin: 5,
     marginTop: 25
   },
