@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Modal,
+  Alert,
   AsyncStorage
 } from 'react-native'
 import DropdownMenu from './dropdown_menu'
@@ -21,6 +22,7 @@ const {width, height} = Dimensions.get('window');
 import dropdown from '../../store/actions/dropdown'
 import store from '../../store'
 import meetingAction from '../../store/actions/meeting'
+import orders from '../../store/storage/orders'
 
 export default class Main extends Component {
 
@@ -31,6 +33,8 @@ export default class Main extends Component {
       selectedClient: {},
       clientIsSelected: false,
       clientsData: [],
+      modalVisible: false,
+      orders: {}
     }
   }
 
@@ -38,6 +42,7 @@ export default class Main extends Component {
     meetingAction.clear()
     dropdown.getItems('demo_clients')
     this.setState({clientsData: store.getState().dropdown.items})
+    this.showOrders()
   }
 
   goToMeeting() {
@@ -53,6 +58,81 @@ export default class Main extends Component {
     Actions.report({
       client: this.state.selectedClient
     })
+  }
+
+  showOrders() {
+    orders.getData()
+      .then(
+        (data) => {
+          console.log('datat from test ->', data)
+          this.setState({orders: data})
+          console.log('orders', this.state.orders)
+        }
+      ).catch(
+        err => console.log(err)
+      )
+  }
+
+  renderOrdersModal() {
+    let data = this.state.orders
+    return (
+      <View style={[styles.container, styles.backgroundLight]}>
+        <ScrollView>
+          { (data.length)
+            ?
+            data.map((item) => {
+              return (
+                <View style={{padding: 5, marginTop: 10, borderBottomWidth: 2, borderColor: colors.app_orange}}>
+                  <View style={{width: width - 40}}>
+                    <View>
+                      <Text>Client:</Text>
+                      <Text style={styles.textBigSemiDark}>{item.client.number}</Text>
+                      <Text style={styles.textBigDark}>{item.client.name}</Text>
+                    </View>
+                    <View>
+                      <Text style={styles.textBigSemiDark}>Field:</Text>
+                      <Text style={styles.textBigDark}>{item.field}</Text>
+                    </View>
+                    <View>
+                      <Text style={styles.textBigSemiDark}>Products:</Text>
+                      {item.products.map((prod) => {
+                        return <Text>{prod}</Text>
+                      })}
+                    </View>
+                    <View>
+                      <Text style={styles.textBigSemiDark}>Discount:</Text>
+                      <Text style={styles.textBigDark}>{item.clientDiscount + item.productDiscount}</Text>
+                    </View>
+                    <View>
+                      <Text style={styles.textBigSemiDark}>Notes:</Text>
+                      <Text style={styles.textBigDark}>{item.notes}</Text>
+                    </View>
+                  </View>
+                </View>
+
+              )
+            })
+            : <Text style={styles.massage}>No Orders</Text>
+          }
+        </ScrollView>
+        <View style={[styles.bottomContainer, {height: 70}]}>
+          <View style={{flex: 1, flexDirection: 'row'}}>
+            <Button
+              style={[styles.bottomButton, styles.button]}
+              kind='squared'
+              theme={themes.buttonTheme}
+              onPress={() => this.setState({modalVisible: false})}
+            >close</Button>
+            <Button
+              style={[styles.bottomButton, styles.button]}
+              kind='squared'
+              theme={themes.buttonTheme}
+              onPress={() => Alert.alert('sync orders...')}
+            >send</Button>
+          </View>
+        </View>
+      </View>
+    )
   }
 
   renderClientData() {
@@ -140,14 +220,29 @@ export default class Main extends Component {
             {this.renderClientData()}
           </View>
 
+          <Modal
+            visible={this.state.modalVisible}
+          >
+            {this.renderOrdersModal()}
+          </Modal>
+
           <View style={styles.bottomContainer}>
-            <Button
-              disabled={!this.state.clientIsSelected}
-              style={[styles.bottomButton, styles.button]}
-              kind='squared'
-              theme={themes.buttonTheme}
-              onPress={this.goToMeeting.bind(this)}
-            >go to meeting</Button>
+            <View style={{flex: 1, flexDirection: 'row'}}>
+              <Button
+                //disabled={!this.state.clientIsSelected}
+                style={[styles.bottomButton, styles.button]}
+                kind='squared'
+                theme={themes.buttonTheme}
+                onPress={() => this.setState({modalVisible: true})}
+              >show orders</Button>
+              <Button
+                disabled={!this.state.clientIsSelected}
+                style={[styles.bottomButton, styles.button]}
+                kind='squared'
+                theme={themes.buttonTheme}
+                onPress={this.goToMeeting.bind(this)}
+              >go to meeting</Button>
+            </View>
           </View>
 
         </View>

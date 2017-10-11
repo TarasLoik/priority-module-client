@@ -10,10 +10,12 @@ const order = {
       JSON.stringify(listOfOrders));
   },
 
-  async getOrders() {
-    //TODO Add functionality for get orders from AsyncStorage
-  },
+  async getData() {
+    let response = await AsyncStorage.getItem('ORDERS');
+    let listOfOrders = await JSON.parse(response) || [];
+    return listOfOrders
 
+  },//returns Promise
 
 }
 

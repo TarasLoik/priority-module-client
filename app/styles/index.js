@@ -105,6 +105,11 @@ const styles = StyleSheet.create({
     color: colors.dark_button
   },
 
+  massage: {
+    fontSize: 24,
+    color: colors.app_orange
+  },
+
   //Inputs & Buttons
   input: {
     margin: 5,
@@ -130,7 +135,7 @@ const styles = StyleSheet.create({
     marginTop: 25
   },
   bottomButton: {
-    width: width / 2, marginTop: 10
+    margin: 10
   },
   button: {
     borderRadius: BORDER_RADIUS
