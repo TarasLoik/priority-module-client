@@ -31,10 +31,6 @@ export default class MeetingView extends Component {
     }
   }
 
-  componentWillMount() {
-    //meetingAction.clear()
-  }
-
   componentDidMount() {
     meetingAction.setInfo({clientDiscount: this.props.client.discount})
   }

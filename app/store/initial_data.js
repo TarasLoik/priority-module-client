@@ -54,7 +54,38 @@ let demo_clients = [
     'contacts': {
       'phone': '+972-1800-000-456',
       'fax': '+972-1800-000-456'
-    }
+    },
+    'orders' : [
+      {
+        'date': '01/01/2016',
+        'field': 'שחר אורן 1',
+        'product': 'UREA(NPK:46-0-0)',
+        'discount': 0,
+        'price': 1000
+      },
+      {
+        'date': '01/02/2016',
+        'field': 'שחר אורן 1',
+        'product': 'UREA(NPK:46-0-0)',
+        'discount': 5,
+        'price': 950
+      },
+      {
+        'date': '01/03/2016',
+        'field': 'שחר אורן 1',
+        'product': 'UREA(NPK:46-0-0)',
+        'discount': 10,
+        'price': 900
+      },
+      {
+        'date': '01/04/2016',
+        'field': 'שחר אורן 1',
+        'product': 'UREA(NPK:46-0-0)',
+        'discount': 20,
+        'price': 800
+      },
+
+    ]
   },
   {
     'name': "שחר דורון",
@@ -66,7 +97,38 @@ let demo_clients = [
     'contacts': {
       'phone': '+972-1800-332-000',
       'fax': '+972-1800-332-000'
-    }
+    },
+    'orders' : [
+      {
+        'date': '01/01/2016',
+        'field': 'שחר דורון 1',
+        'product': 'UREA(NPK:46-0-0)',
+        'discount': 0,
+        'price': 1000
+      },
+      {
+        'date': '01/02/2016',
+        'field': 'שחר דורון 1',
+        'product': 'UREA(NPK:46-0-0)',
+        'discount': 5,
+        'price': 950
+      },
+      {
+        'date': '01/03/2016',
+        'field': 'שחר דורון 1',
+        'product': 'UREA(NPK:46-0-0)',
+        'discount': 10,
+        'price': 900
+      },
+      {
+        'date': '01/04/2016',
+        'field': 'שחר דורון 1',
+        'product': 'UREA(NPK:46-0-0)',
+        'discount': 20,
+        'price': 800
+      },
+
+    ]
   },
   {
     'name': "שחר חיים",

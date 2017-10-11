@@ -51,7 +51,7 @@ export default class Main extends Component {
 
   showLastReports() {
     Actions.report({
-      orders: this.state.selectedClient.orders
+      client: this.state.selectedClient
     })
   }
 

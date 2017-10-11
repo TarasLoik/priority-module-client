@@ -48,10 +48,8 @@ export default class TotalResultView extends Component {
   submit() {
     let order = {...this.state.meetingInfo}
     order.notes = this.state.notes
-    console.log('order', order)
     orderAction.create(order)
-    meetingAction.clear()
-    //Alert.alert('Result submitted!');
+    Alert.alert('Result submitted!');
     Actions.main()
   }
 
