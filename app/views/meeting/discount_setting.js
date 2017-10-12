@@ -31,6 +31,11 @@ export default class DiscountView extends Component {
     };
   }
 
+  componentWillUnmount() {
+    let order = this.state.order
+    meetingAction.setInfo(order)
+  }
+
   result() {
     let discount = this.state.order.clientDiscount + this.state.order.productDiscount
     return discount

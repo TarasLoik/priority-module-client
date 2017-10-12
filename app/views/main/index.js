@@ -10,19 +10,22 @@ import {
   Alert,
   AsyncStorage
 } from 'react-native'
-import DropdownMenu from './dropdown_menu'
-import {Input, Button} from 'nachos-ui';
+import {Indicator, Button} from 'nachos-ui';
 
 import styles from '../../styles/index.js';
 import themes from '../../styles/themes';
 import colors from '../../styles/colors'
-
 const {width, height} = Dimensions.get('window');
 
-import dropdown from '../../store/actions/dropdown'
-import store from '../../store'
 import meetingAction from '../../store/actions/meeting'
 import orders from '../../store/storage/orders'
+
+import SearchInput, { createFilter } from 'react-native-search-filter'
+//TODO Edit after giving on access to db
+import data from '../../store/initial_data'
+let clients = data.demo_clients
+const KEYS_TO_FILTERS = ['name', 'number']
+
 
 export default class Main extends Component {
 
@@ -32,16 +35,19 @@ export default class Main extends Component {
       searchText: '',
       selectedClient: {},
       clientIsSelected: false,
-      clientsData: [],
       modalVisible: false,
-      orders: {}
+      orders: [],
+      searchTerm: '',
+      isConnection: false,
     }
+  }
+
+  searchUpdated(term) {
+    this.setState({ searchTerm: term })
   }
 
   componentWillMount() {
     meetingAction.clear()
-    dropdown.getItems('demo_clients')
-    this.setState({clientsData: store.getState().dropdown.items})
     this.showOrders()
   }
 
@@ -60,13 +66,14 @@ export default class Main extends Component {
     })
   }
 
+  /*
+  * Loading orders from local storage that no uploaded to database
+  * */
   showOrders() {
     orders.getData()
       .then(
         (data) => {
-          console.log('datat from test ->', data)
           this.setState({orders: data})
-          console.log('orders', this.state.orders)
         }
       ).catch(
         err => console.log(err)
@@ -112,7 +119,10 @@ export default class Main extends Component {
 
               )
             })
-            : <Text style={styles.massage}>No Orders</Text>
+            :
+            <View style={{marginTop: 150}}>
+              <Text style={styles.massage}>No Orders</Text>
+            </View>
           }
         </ScrollView>
         <View style={[styles.bottomContainer, {height: 70}]}>
@@ -139,33 +149,37 @@ export default class Main extends Component {
     if(this.state.clientIsSelected) {
       return (
         <ScrollView>
-          <View style={{width: width - 40}}>
-            <View>
-              <Text style={styles.textBigSemiDark}>{this.state.selectedClient.number}</Text>
-              <Text style={styles.textBigDark}>{this.state.selectedClient.name}</Text>
+          <View style={{marginTop: 20, width: width - 40}}>
+            <View style={{height: 80, flexDirection: 'row'}}>
+              <View style={[styles.container ,{flex: 0.7}]}>
+                <Text style={styles.textBigSemiDark}>{this.state.selectedClient.number}</Text>
+              </View>
+              <View style={[styles.container ,{flex: 1}]}>
+                <Text style={styles.textBigDark}>{this.state.selectedClient.name}</Text>
+              </View>
             </View>
-            <View>
+            <View style={{height: 60, borderBottomWidth: 0.5, borderColor: colors.background}}>
               <Text style={styles.textGrey}>{/*אזור:*/}Region:</Text>
               <Text style={styles.descText}>{this.state.selectedClient.region}</Text>
             </View>
-            <View>
+            <View style={{height: 60, borderBottomWidth: 0.5, borderColor: colors.background}}>
               <Text style={styles.textGrey}>{/*עיר:*/}City:</Text>
               <Text style={styles.descText}>{this.state.selectedClient.city}</Text>
             </View>
-            <View>
+            <View style={{borderBottomWidth: 0.5, borderColor: colors.background}}>
               <Text style={styles.textGrey}>{/*מוצרים:*/}Products:</Text>
               <Text style={styles.descText}>מוצר1</Text>
               <Text style={styles.descText}>מוצר2</Text>
             </View>
-            <View>
+            <View style={{height: 60, borderBottomWidth: 0.5, borderColor: colors.background}}>
               <Text style={styles.textGrey}>Central client:</Text>
               <Text style={styles.descText}>{this.state.selectedClient.name}</Text>
             </View>
-            <View>
+            <View style={{height: 60, borderBottomWidth: 0.5, borderColor: colors.background}}>
               <Text style={styles.textGrey}>Central number:</Text>
               <Text style={styles.descText}>{this.state.selectedClient.number}</Text>
             </View>
-            <View>
+            <View style={{alignItems: 'center'}}>
               <Text style={styles.textGrey}>{/*אנשי קשר*/}Contacts:</Text>
               <Text style={styles.descText}>{this.state.selectedClient.contacts.phone}</Text>
               <Text style={styles.descText}>{this.state.selectedClient.contacts.fax}</Text>
@@ -179,13 +193,36 @@ export default class Main extends Component {
         </ScrollView>
       )
     } else {
+      const filteredClients = clients.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
       return (
-        <View style={{flex: 1}}>
-          <View style={styles.container}>
-            <Text style={styles.textMassage}>
-              {/*בחר לקוח*/}client is not selected
-            </Text>
+        <View>
+          <View style={{width: width}}>
+            <SearchInput
+              style={[styles.input, {margin: 10, height: 50, paddingLeft: 15}]}
+              onChangeText={(term) => { this.searchUpdated(term) }}
+              placeholder='Type client name or number'
+            />
           </View>
+          <ScrollView>
+            {filteredClients.map((client) => {
+              return (
+                <View style={{paddingHorizontal: 20, height: 60, flexDirection: 'row',}}>
+                  <View style={[styles.container, {flex: 0.3,borderBottomWidth: 1, borderColor: colors.background}]}>
+                    <Text style={styles.descText}>{client.number}</Text>
+                  </View>
+                  <View style={[styles.container, {borderBottomWidth: 1, borderColor: colors.background}]}>
+                    <Text style={styles.descText}>{client.name}</Text>
+                  </View>
+                  <View style={[styles.container, {flex: 0.6, borderBottomWidth: 1, borderColor: colors.background}]}>
+                    <TouchableOpacity onPress={() => this.selectClient(client)}>
+                      <Text style={styles.massage}>SELECT</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              )
+            })}
+          </ScrollView>
+
         </View>
       )
     }
@@ -194,29 +231,23 @@ export default class Main extends Component {
   render() {
     return (
       <View style={[styles.container, styles.backgroundLight]}>
-        <View style={styles.mainViewContainer}>
-          <View style={[{ width: width, height: 100, flexDirection: 'row'}]}>
-            <View style={{flex: 4}}>
-              <Input
-                height={50}
-                style={styles.input}
-                inputStyle={{fontSize: 20}}
-                theme={themes.inputTheme}
-                autoCapitalize='none'
-                value={this.state.searchText}
-                underlineColorAndroid='transparent'
-                placeholder="Search"
-                onChangeText={(searchText) => this.setState({searchText})}
-              />
-            </View>
-            <View style={{flex: 1, height: 50,  margin: 5}}>
-              <DropdownMenu
-                optionList={this.state.clientsData}
-                onPress={(data) => this.selectClient(data)}/>
+        <View style={[styles.mainViewContainer]}>
+          <View style={[{height: 50, width: width, paddingHorizontal: 20}]}>
+            <View style={{height: 50, marginTop: 5}}>
+              <Button
+                //disabled={!this.state.clientIsSelected}
+                style={[styles.button]}
+                kind='squared'
+                iconName={(this.state.clientIsSelected) ? 'ios-arrow-back' : 'md-globe'}
+                iconColor={(this.state.clientIsSelected) ? colors.app_orange : (this.state.isConnection) ? colors.app_orange : 'black'}
+                iconPosition='left'
+                theme={themes.buttonTheme}
+                onPress={() => this.setState({clientIsSelected: false})}
+              >{(this.state.clientIsSelected)? 'back' : 'load from database'}</Button>
             </View>
           </View>
 
-          <View style={styles.mainViewDataContainer}>
+          <View style={[styles.mainViewDataContainer]}>
             {this.renderClientData()}
           </View>
 
@@ -226,25 +257,32 @@ export default class Main extends Component {
             {this.renderOrdersModal()}
           </Modal>
 
-          <View style={styles.bottomContainer}>
+          <View style={[styles.bottomContainer]}>
             <View style={{flex: 1, flexDirection: 'row'}}>
-              <Button
-                //disabled={!this.state.clientIsSelected}
-                style={[styles.bottomButton, styles.button]}
-                kind='squared'
-                theme={themes.buttonTheme}
-                onPress={() => this.setState({modalVisible: true})}
-              >show orders</Button>
-              <Button
-                disabled={!this.state.clientIsSelected}
-                style={[styles.bottomButton, styles.button]}
-                kind='squared'
-                theme={themes.buttonTheme}
-                onPress={this.goToMeeting.bind(this)}
-              >go to meeting</Button>
+              <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                <View style={{height: 50}}>
+                  <Button
+                    //disabled={!this.state.clientIsSelected}
+                    style={[styles.button]}
+                    kind='squared'
+                    theme={themes.buttonTheme}
+                    onPress={() => this.setState({modalVisible: true})}
+                  >show orders</Button>
+                </View>
+              </View>
+              <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                <View style={{height: 50}}>
+                  <Button
+                    disabled={!this.state.clientIsSelected}
+                    style={[styles.button]}
+                    kind='squared'
+                    theme={themes.buttonTheme}
+                    onPress={this.goToMeeting.bind(this)}
+                  >go to meeting</Button>
+                </View>
+              </View>
             </View>
           </View>
-
         </View>
       </View>
     )

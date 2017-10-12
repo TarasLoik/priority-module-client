@@ -145,7 +145,7 @@ let demo_clients = [
   },
   {
     'name': "שחר אורן",
-    'number': 1150,
+    'number': 1750,
     'fields': ['שחר אורן 1', 'שחר אורן 2', 'שחר אורן 3'],
     'discount': 3,
     'region': 'מחוז המרכז',
@@ -182,7 +182,7 @@ let demo_clients = [
   },
   {
     'name': "שחר אורן",
-    'number': 1150,
+    'number': 1155,
     'fields': ['שחר אורן 1', 'שחר אורן 2', 'שחר אורן 3'],
     'discount': 3,
     'region': 'מחוז המרכז',

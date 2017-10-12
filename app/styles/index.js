@@ -25,20 +25,19 @@ const styles = StyleSheet.create({
 
   mainViewContainer: {
     flex: 1,
+    alignItems: 'center',
     justifyContent: 'space-between'
   },
 
   mainViewDataContainer: {
     width: width,
-    height: height - 200,
+    height: height - 180,
     alignItems: 'center'
   },
 
   bottomContainer: {
     width: width,
     height: 100,
-    alignItems: 'center',
-    justifyContent: 'center'
   },
 
   addContainer: {
@@ -135,7 +134,7 @@ const styles = StyleSheet.create({
     marginTop: 25
   },
   bottomButton: {
-    margin: 10
+    margin: 5
   },
   button: {
     borderRadius: BORDER_RADIUS
