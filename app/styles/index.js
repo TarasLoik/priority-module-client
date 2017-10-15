@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   titleStyle: {
+    alignSelf: 'center',
     color: colors.app_orange,
     fontWeight: 'bold',
   },
