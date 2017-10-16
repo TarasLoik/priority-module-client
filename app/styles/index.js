@@ -25,20 +25,19 @@ const styles = StyleSheet.create({
 
   mainViewContainer: {
     flex: 1,
+    alignItems: 'center',
     justifyContent: 'space-between'
   },
 
   mainViewDataContainer: {
     width: width,
-    height: height - 200,
+    height: height - 180,
     alignItems: 'center'
   },
 
   bottomContainer: {
     width: width,
     height: 100,
-    alignItems: 'center',
-    justifyContent: 'center'
   },
 
   addContainer: {
@@ -68,6 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   titleStyle: {
+    alignSelf: 'center',
     color: colors.app_orange,
     fontWeight: 'bold',
   },
@@ -105,6 +105,11 @@ const styles = StyleSheet.create({
     color: colors.dark_button
   },
 
+  massage: {
+    fontSize: 24,
+    color: colors.app_orange
+  },
+
   //Inputs & Buttons
   input: {
     margin: 5,
@@ -130,7 +135,7 @@ const styles = StyleSheet.create({
     marginTop: 25
   },
   bottomButton: {
-    width: width / 2, marginTop: 10
+    margin: 5
   },
   button: {
     borderRadius: BORDER_RADIUS
