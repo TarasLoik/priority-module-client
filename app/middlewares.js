@@ -31,7 +31,7 @@ export const middlewares = [
   },
   {
     key: 'client',
-    title: 'CLIENT',
+    title: 'לקוח',//CLIENT
     titleStyle: styles.titleStyle,
     component: ClientView,
     navigationBarStyle: styles.navBarStyles,

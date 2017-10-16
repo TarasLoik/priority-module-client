@@ -82,22 +82,22 @@ export default class Main extends Component {
                 <View style={{padding: 5, marginTop: 10, borderBottomWidth: 2, borderColor: colors.app_orange}}>
                   <View style={{width: width - 40}}>
                     <View>
-                      <Text>Client:</Text>
+                      <Text>לקוח:</Text>
                       <Text style={styles.textBigSemiDark}>{item.client.number}</Text>
                       <Text style={styles.textBigDark}>{item.client.name}</Text>
                     </View>
                     <View>
-                      <Text style={styles.textBigSemiDark}>Field:</Text>
+                      <Text style={styles.textBigSemiDark}>שטח:</Text>
                       <Text style={styles.textBigDark}>{item.field}</Text>
                     </View>
                     <View>
-                      <Text style={styles.textBigSemiDark}>Products:</Text>
+                      <Text style={styles.textBigSemiDark}>מוצר:</Text>
                       {item.products.map((prod) => {
                         return <Text>{prod}</Text>
                       })}
                     </View>
                     <View>
-                      <Text style={styles.textBigSemiDark}>Discount:</Text>
+                      <Text style={styles.textBigSemiDark}>הנחות:</Text>
                       <Text style={styles.textBigDark}>{item.clientDiscount + item.productDiscount}</Text>
                     </View>
                     <View>
@@ -162,7 +162,7 @@ export default class Main extends Component {
                       </View>
                       <View style={[styles.container, {flex: 0.6, borderBottomWidth: 1, borderColor: colors.background}]}>
                         <TouchableOpacity onPress={() => this.selectClient(client)}>
-                          <Text style={styles.massage}>SELECT</Text>
+                          <Text style={styles.massage}>שלח{/*SELECT*/}</Text>
                         </TouchableOpacity>
                       </View>
                     </View>
@@ -188,7 +188,7 @@ export default class Main extends Component {
                     kind='squared'
                     theme={themes.buttonTheme}
                     onPress={() => this.setState({modalVisible: true})}
-                  >show orders</Button>
+                  >דוחות קודמות</Button>{/*show orders*/}
                 </View>
               </View>
             </View>

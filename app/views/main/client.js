@@ -50,15 +50,15 @@ export default class ClientView extends Component {
               </View>
             </View>
             <View style={{height: 60, borderBottomWidth: 0.5, borderColor: colors.background}}>
-              <Text style={styles.textGrey}>{/*אזור:*/}Region:</Text>
+              <Text style={styles.textGrey}>אזור:{/*Region:*/}</Text>
               <Text style={styles.descText}>{this.state.selectedClient.region}</Text>
             </View>
             <View style={{height: 60, borderBottomWidth: 0.5, borderColor: colors.background}}>
-              <Text style={styles.textGrey}>{/*עיר:*/}City:</Text>
+              <Text style={styles.textGrey}>{/*City:*/}עיר:</Text>
               <Text style={styles.descText}>{this.state.selectedClient.city}</Text>
             </View>
             <View style={{borderBottomWidth: 0.5, borderColor: colors.background}}>
-              <Text style={styles.textGrey}>{/*מוצרים:*/}Products:</Text>
+              <Text style={styles.textGrey}>{/*Products:*/}מוצרים:</Text>
               <Text style={styles.descText}>מוצר1</Text>
               <Text style={styles.descText}>מוצר2</Text>
             </View>
@@ -71,13 +71,13 @@ export default class ClientView extends Component {
               <Text style={styles.descText}>{this.state.selectedClient.number}</Text>
             </View>
             <View style={{alignItems: 'center'}}>
-              <Text style={styles.textGrey}>{/*אנשי קשר*/}Contacts:</Text>
+              <Text style={styles.textGrey}>{/*Contacts*/}אנשי קשר</Text>
               <Text style={styles.descText}>{this.state.selectedClient.contacts.phone}</Text>
               <Text style={styles.descText}>{this.state.selectedClient.contacts.fax}</Text>
             </View>
             <View style={styles.btnReports}>
               <TouchableOpacity onPress={this.showLastReports.bind(this)}>
-                <Text style={styles.buttonTextTint}>LAST REPORTS{/*דוחות קודמות*/}</Text>
+                <Text style={styles.buttonTextTint}>{/*LAST REPORTS*/}דוחות קודמות</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -91,7 +91,7 @@ export default class ClientView extends Component {
                 kind='squared'
                 theme={themes.buttonTheme}
                 onPress={this.goToMeeting.bind(this)}
-              >start meeting</Button>
+              >{/*start meeting*/} להתחיל פגישה</Button>
             </View>
           </View>
 
