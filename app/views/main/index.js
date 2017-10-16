@@ -51,18 +51,6 @@ export default class Main extends Component {
   }
 
   selectClient(data) {
-<<<<<<< HEAD
-    console.log(data)
-    this.setState({selectedClient: data})
-    this.setState({clientIsSelected: true})
-    console.log(this.state.selectedClient)
-  }
-
-  showLastReports() {
-    Actions.report({
-      client: this.state.selectedClient
-    })
-=======
     Actions.client({
       client: data,
     })
@@ -80,7 +68,6 @@ export default class Main extends Component {
       ).catch(
         err => console.log(err)
       )
->>>>>>> 04ffdd5f7c1f077cbb61c4d6538a076f711da344
   }
 
   renderOrdersModal() {
@@ -88,43 +75,6 @@ export default class Main extends Component {
     return (
       <View style={[styles.container, styles.backgroundLight]}>
         <ScrollView>
-<<<<<<< HEAD
-          <View style={{width: width - 40}}>
-            <View>
-              <Text style={styles.textBigSemiDark}>{this.state.selectedClient.number}</Text>
-              <Text style={styles.textBigDark}>{this.state.selectedClient.name}</Text>
-            </View>
-            <View>
-              <Text style={styles.textGrey}>אזור:</Text>
-              <Text style={styles.descText}>{this.state.selectedClient.region}</Text>
-            </View>
-            <View>
-              <Text style={styles.textGrey}>עיר:</Text>
-              <Text style={styles.descText}>{this.state.selectedClient.city}</Text>
-            </View>
-            <View>
-              <Text style={styles.textGrey}>מוצרים:</Text>
-              <Text style={styles.descText}>מוצר1</Text>
-              <Text style={styles.descText}>מוצר2</Text>
-            </View>
-            <View>
-              <Text style={styles.textGrey}>Central client:</Text>
-              <Text style={styles.descText}>{this.state.selectedClient.name}</Text>
-            </View>
-            <View>
-              <Text style={styles.textGrey}>Central number:</Text>
-              <Text style={styles.descText}>{this.state.selectedClient.number}</Text>
-            </View>
-            <View>
-              <Text style={styles.textGrey}>אנשי קשר</Text>
-              <Text style={styles.descText}>{this.state.selectedClient.contacts.phone}</Text>
-              <Text style={styles.descText}>{this.state.selectedClient.contacts.fax}</Text>
-            </View>
-            <View style={styles.btnReports}>
-              <TouchableOpacity onPress={this.showLastReports.bind(this)}>
-                <Text style={styles.buttonTextTint}>דוחות קודמות</Text>
-              </TouchableOpacity>
-=======
           { (data.length)
             ?
             data.map((item) => {
@@ -162,20 +112,9 @@ export default class Main extends Component {
             :
             <View style={{marginTop: 150}}>
               <Text style={styles.massage}>No Orders</Text>
->>>>>>> 04ffdd5f7c1f077cbb61c4d6538a076f711da344
             </View>
           }
         </ScrollView>
-<<<<<<< HEAD
-      )
-    } else {
-      return (
-        <View style={{flex: 1}}>
-          <View style={styles.container}>
-            <Text style={styles.textMassage}>
-              בחר לקוח
-            </Text>
-=======
         <View style={[styles.bottomContainer, {height: 70}]}>
           <View style={{flex: 1, flexDirection: 'row'}}>
             <Button
@@ -190,7 +129,6 @@ export default class Main extends Component {
               theme={themes.buttonTheme}
               onPress={() => Alert.alert('sync orders...')}
             >send</Button>
->>>>>>> 04ffdd5f7c1f077cbb61c4d6538a076f711da344
           </View>
         </View>
       </View>
@@ -201,27 +139,6 @@ export default class Main extends Component {
     const filteredClients = clients.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
     return (
       <View style={[styles.container, styles.backgroundLight]}>
-<<<<<<< HEAD
-        <View style={styles.mainViewContainer}>
-          <View style={[{ width: width, height: 100, flexDirection: 'row'}]}>
-            <View style={{flex: 4}}>
-              <Input
-                height={50}
-                style={styles.input}
-                inputStyle={{fontSize: 20}}
-                theme={themes.inputTheme}
-                autoCapitalize='none'
-                value={this.state.searchText}
-                underlineColorAndroid='transparent'
-                placeholder="שחר"
-                onChangeText={(searchText) => this.setState({searchText})}
-              />
-            </View>
-            <View style={{flex: 1, height: 50,  margin: 5}}>
-              <DropdownMenu
-                optionList={this.state.clientsData}
-                onPress={(data) => this.selectClient(data)}/>
-=======
         <View style={[styles.mainViewContainer]}>
 
           <View style={[styles.mainViewDataContainer]}>
@@ -253,7 +170,6 @@ export default class Main extends Component {
                 })}
               </ScrollView>
 
->>>>>>> 04ffdd5f7c1f077cbb61c4d6538a076f711da344
             </View>
           </View>
 
@@ -263,16 +179,6 @@ export default class Main extends Component {
             {this.renderOrdersModal()}
           </Modal>
 
-<<<<<<< HEAD
-          <View style={styles.bottomContainer}>
-            <Button
-              disabled={!this.state.clientIsSelected}
-              style={[styles.bottomButton, styles.button]}
-              kind='squared'
-              theme={themes.buttonTheme}
-              onPress={this.goToMeeting.bind(this)}
-            >להתחיל פגישה</Button>
-=======
           <View style={[styles.bottomContainer]}>
             <View style={{flex: 1, flexDirection: 'row'}}>
               <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
@@ -286,7 +192,6 @@ export default class Main extends Component {
                 </View>
               </View>
             </View>
->>>>>>> 04ffdd5f7c1f077cbb61c4d6538a076f711da344
           </View>
         </View>
       </View>

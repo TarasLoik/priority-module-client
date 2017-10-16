@@ -59,14 +59,9 @@ export const middlewares = [
   {
     key: 'total',
     component: TotalResultView,
-<<<<<<< HEAD
     title: 'מֵידָע',
     //title: 'RESULT',
-=======
-    //title: 'מֵידָע',
-    title: 'RESULT',
     titleStyle: styles.titleStyle,
->>>>>>> 04ffdd5f7c1f077cbb61c4d6538a076f711da344
     hideNavBar: false,
     navBarButtonColor: '#ffa57c',
   }

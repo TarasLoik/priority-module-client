@@ -7,7 +7,7 @@ let initialState = {}
 export default function orderReducer(state = initialState, action) {
   switch (action.type) {
     case types.order.create:
-      //login for saving to AsyncStorage
+      //logic for saving to AsyncStorage
       orderApi.create(action.payload);
       return state
     default:
