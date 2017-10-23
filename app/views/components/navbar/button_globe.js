@@ -27,9 +27,10 @@ export default class ButtonGlobe extends Component{
     return (
       <View style={{flex: 1}}>
         <Button
-          style={[styles.button,{width: 50, paddingHorizontal: 0, marginTop: 2}]}
+          style={[styles.button,{flex: 1, width: 50, paddingHorizontal: 0}]}
           kind='squared'
           iconName='md-globe'
+          height={27}
           iconColor={(this.state.connection) ? colors.app_orange : 'black'}
           iconPosition='left'
           iconSize={27}
