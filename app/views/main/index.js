@@ -73,7 +73,7 @@ export default class Main extends Component {
   renderOrdersModal() {
     let data = this.state.orders
     return (
-      <View style={[styles.container, styles.backgroundLight]}>
+      <View style={[styles.container, styles.backgroundLight, {paddingTop: 25}]}>
         <ScrollView>
           { (data.length)
             ?

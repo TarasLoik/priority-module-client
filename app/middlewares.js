@@ -37,12 +37,18 @@ export const middlewares = [
     navigationBarStyle: styles.navBarStyles,
     navBarButtonColor: '#ffa57c',
     hideNavBar: false,
+    backButtonTextStyle: {} //row for disabling ios back title
   },
   // Meeting Screen
   {
     key: 'meeting',
+    title: 'MEETING',
+    titleStyle: styles.titleStyle,
     component: MeetingView,
-    hideNavBar: true,
+    navigationBarStyle: styles.navBarStyles,
+    navBarButtonColor: '#ffa57c',
+    hideNavBar: false,
+    backButtonTextStyle: {} //row for disabling ios back title
   },
   // Report Screen
   {
@@ -65,5 +71,6 @@ export const middlewares = [
     titleStyle: styles.titleStyle,
     hideNavBar: false,
     navBarButtonColor: '#ffa57c',
+    backButtonTextStyle: {} //row for disabling ios back title
   }
 ]
