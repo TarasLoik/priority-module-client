@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { Actions } from 'react-native-router-flux'
 import {
-  Text,
   View,
   ScrollView,
   Dimensions,
-  Modal
 } from 'react-native';
 
 import { Switcher, SegmentedControlButton, Button} from 'nachos-ui';
@@ -74,7 +72,7 @@ export default class MeetingView extends Component {
       <View style={[styles.container, {backgroundColor: colors.background_light}]}>
         {/*segment button container*/}
         <View>
-          <View style={{height: 50, width: width - 10, margin: 5}}>
+          <View style={{height: 50, width: width - 10, margin: 5, marginTop: 25}}>
             <Switcher
               style={{flex: 1}}
               onChange={(mode) => this.setViewMode(mode)}

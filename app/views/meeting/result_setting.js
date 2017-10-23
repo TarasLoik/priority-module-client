@@ -1,12 +1,10 @@
 import React, {Component} from 'react'
-import { Actions, ActionConst } from 'react-native-router-flux'
 import {
   Text,
   View,
   ScrollView,
   TouchableOpacity,
   Modal,
-  Alert,
   Dimensions
 } from 'react-native'
 
@@ -87,7 +85,7 @@ export default class ResultView extends Component {
         data.map((item) => {
           return (
             <View style={styles.addContainer}>
-              <Text style={styles.descText}>
+              <Text style={[styles.descText, {fontSize: 16}]}>
                 {item}
               </Text>
             </View>

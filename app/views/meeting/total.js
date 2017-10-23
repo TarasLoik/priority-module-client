@@ -150,7 +150,7 @@ export default class TotalResultView extends Component {
         <Modal
           visible={this.state.modalVisible}
         >
-          <View style={{flex: 1, backgroundColor: colors.background_light}}>
+          <View style={{flex: 1, backgroundColor: colors.background_light, paddingTop: 25}}>
             <View style={{flexDirection: 'row', height: 60}}>
               <Button
                 style={[styles.button, {flex: 1, margin: 5}]}

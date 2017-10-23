@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   },
 
   descText: {
-    fontSize: 20,
+    fontSize: 18,
     color: colors.dark_button
   },
 

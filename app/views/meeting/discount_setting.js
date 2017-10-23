@@ -2,10 +2,7 @@ import React, {Component} from 'react'
 import {
   Text,
   View,
-  ScrollView,
   TouchableOpacity,
-  Modal,
-  Alert,
   Dimensions
 } from 'react-native'
 import Picker from 'react-native-picker';
@@ -75,6 +72,7 @@ export default class DiscountView extends Component {
       pickerFontColor: [255, 165, 124, 1], //orange
       onPickerConfirm: (value) => this.setClientDiscount(value)
     });
+    Picker.hide();
     if(show) {
       return Picker.show()
     }
@@ -99,6 +97,7 @@ export default class DiscountView extends Component {
       pickerFontColor: [255, 165, 124, 1], //orange
       onPickerConfirm: value => this.setProdDiscount(value)
     });
+    Picker.hide();
     if(show) {
       return Picker.show()
     }
